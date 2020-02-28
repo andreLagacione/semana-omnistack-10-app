@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { View } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -28,7 +27,7 @@ function Main({ navigation }) {
                     longitude,
                     latitudeDelta: 0.04,
                     longitudeDelta: 0.04,
-                })
+                });
             }
         }
 
@@ -38,8 +37,8 @@ function Main({ navigation }) {
     async function loadDevs() {
         const { latitude, longitude } = currentRegion;
 
-        const response = await api.get('/search', {
-            params: {
+        const response = await api.post('/search', {
+            body: {
                 latitude,
                 longitude,
                 techs
